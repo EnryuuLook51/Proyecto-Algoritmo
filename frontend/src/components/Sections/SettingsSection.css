@@ -1,0 +1,45 @@
+.theme-toggle-full {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .theme-toggle-full {
+  background: linear-gradient(90deg, #2563eb, #16a34a);
+}
+
+.theme-toggle-full:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+.username-input {
+  padding: 14px;
+  font-size: 17px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .username-input {
+  background: #1e293b !important;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  .theme-toggle-full {
+    font-size: 15px;
+    padding: 14px;
+  }
+}

@@ -1,0 +1,20 @@
+# Entorno Virtual (aunque el .gitignore global podría cubrirlo, es bueno tenerlo aquí)
+venv/
+
+# Archivos de Python compilados y caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Bases de datos SQLite (si llegaras a usar una para pruebas locales)
+*.sqlite3
+*.db
+
+# Archivos de configuración local que no deben subirse
+# instance/ # Común en proyectos Flask más grandes para config_local.py
+# .env # Si usas python-dotenv para variables de entorno locales
+
+# Logs
+*.log

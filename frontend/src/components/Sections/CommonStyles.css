@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+.prediction-container {
+  min-height: 100vh;
+  display: flex;
+  padding: 24px;
+  background: url('https://source.unsplash.com/random/1920x1080/?soccer,stadium,lights') center/cover no-repeat;
+  background-attachment: fixed;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.prediction-container.dark {
+  background: #0a1a2f !important;
+  color: #f1f5f9;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.prediction-card {
+  max-width: 600px;
+  width: 100%;
+  background: linear-gradient(145deg, #ffffff 0%, #dbeafe 100%) !important;
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.5s ease, transform 0.3s ease;
+  border: none;
+}
+
+.prediction-card:hover {
+  transform: translateY(-4px);
+}
+
+.dark .prediction-card {
+  background: linear-gradient(145deg, #0a1a2f 0%, #1e293b 100%) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+}
+
+.prediction-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(to right, #3b82f6, #22c55e, #ef4444);
+  animation: gradientBorder 3s infinite linear;
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.prediction-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dark .prediction-header h2 {
+  color: #a5b4fc;
+}
+
+.header-icon {
+  color: #3b82f6;
+  font-size: 28px;
+}
+
+.dark .header-icon {
+  color: #60a5fa;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.dark .form-group label {
+  color: #e5e7eb;
+}
+
+.form-group select,
+.form-group input {
+  padding: 14px;
+  font-size: 17px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark .form-group select,
+.dark .form-group input {
+  background: #1e293b !important;
+  border-color: #475569;
+  color: #f1f5f9;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.predict-button {
+  padding: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulseShadow 2s infinite;
+}
+
+.predict-button:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+}
+
+.predict-button:disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+  animation: none;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin: 28px 0;
+}
+
+.error {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseShadow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  }
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0 !important;
+  }
+  .prediction-card {
+    padding: 24px;
+  }
+  .prediction-header h2 {
+    font-size: 24px;
+  }
+  .form-group select,
+  .form-group input {
+    font-size: 15px;
+    padding: 12px;
+  }
+  .predict-button {
+    font-size: 15px;
+    padding: 14px;
+  }
+}
