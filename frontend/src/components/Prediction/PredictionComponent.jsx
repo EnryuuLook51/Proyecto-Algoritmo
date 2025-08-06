@@ -24,10 +24,10 @@ function PredictionComponent({ localTeam, awayTeam, prediction, isLoading, error
           <FiAlertTriangle size={24} /> {error}
         </p>
       )}
-      {prediction && (
+      {prediction && !error && (
         <div className="result animate-slide-in">
           <h2>
-            <FiCheckCircle size={28} /> Resultado: {prediction.prediccion || prediction.error}
+            <FiCheckCircle size={28} /> Resultado: {prediction.prediccion || prediction.error || 'No disponible'}
           </h2>
           {prediction.confianza && (
             <p className="confidence">Confianza: {prediction.confianza}</p>

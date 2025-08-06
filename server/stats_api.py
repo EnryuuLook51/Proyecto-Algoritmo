@@ -44,7 +44,7 @@ def team_stats(team_name):
     headers = {'X-Auth-Token': API_KEY}
     try:
         response = requests.get(
-            f'{BASE_URL}/competitions/2014/standings?season=2024',  # Cambiado a 2024 para datos más recientes
+            f'{BASE_URL}/competitions/2014/standings?season=2023',  # Cambiado a 2023
             headers=headers
         )
         print(f"API Response Status for {team_name}: {response.status_code}")
@@ -82,7 +82,7 @@ def league_stats(league_name):
     headers = {'X-Auth-Token': API_KEY}
     try:
         response = requests.get(
-            f'{BASE_URL}/competitions/2014/standings?season=2024',  # Cambiado a 2024
+            f'{BASE_URL}/competitions/2014/standings?season=2023',  # Cambiado a 2023
             headers=headers
         )
         print(f"API Response Status for league {league_name}: {response.status_code}")

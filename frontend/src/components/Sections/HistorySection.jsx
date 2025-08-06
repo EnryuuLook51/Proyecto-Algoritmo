@@ -14,27 +14,37 @@ const HistorySection = ({ history, handleDeletePrediction }) => {
         <p>No hay predicciones recientes. ¡Realiza una predicción para empezar!</p>
       ) : (
         <ul className="history-list">
-          {history.map((item) => (
-            <li key={item.id} className="history-item animate-slide-in">
-              <div>
-                <p>
-                  <strong>{item.local}</strong> vs <strong>{item.visitante}</strong>
-                </p>
-                <p>Resultado: {item.prediccion}</p>
-                <p>Confianza: {item.confianza}</p>
-                <p>Cuotas: Local {item.cuotas.local}, Empate {item.cuotas.empate}, Visitante {item.cuotas.visitante}</p>
-                <p>Estadísticas: Puntos Local {item.stats.local_points}, Puntos Visitante {item.stats.visitante_points}</p>
-                <p>Fecha: {item.date}</p>
-              </div>
-              <button
-                className="delete-button"
-                onClick={() => handleDeletePrediction(item.id)}
-                aria-label="Eliminar predicción"
-              >
-                <FiTrash2 size={20} />
-              </button>
-            </li>
-          ))}
+          {history.map((item) => {
+            // Extraer local y visitante desde partido o usar homeTeam/awayTeam como fallback
+            const [local, visitante] = item.partido ? item.partido.split(' vs ') : [item.homeTeam || 'N/A', item.awayTeam || 'N/A'];
+            return (
+              <li key={item.id} className="history-item animate-slide-in">
+                <div>
+                  <p>
+                    <strong>{local}</strong> vs <strong>{visitante}</strong>
+                  </p>
+                  <p>Resultado: {item.prediccion || 'No disponible'}</p>
+                  <p>Confianza: {item.confianza || 'N/A'}</p>
+                  <p>
+                    Cuotas: Local {item.cuotas?.local || 'N/A'}, Empate {item.cuotas?.empate || 'N/A'}, Visitante{' '}
+                    {item.cuotas?.visitante || 'N/A'}
+                  </p>
+                  <p>
+                    Estadísticas: Puntos Local {item.stats?.local_points || 0}, Puntos Visitante{' '}
+                    {item.stats?.visitante_points || 0}
+                  </p>
+                  <p>Fecha: {item.date || 'N/A'}</p>
+                </div>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDeletePrediction(item.id)}
+                  aria-label="Eliminar predicción"
+                >
+                  <FiTrash2 size={20} />
+                </button>
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>

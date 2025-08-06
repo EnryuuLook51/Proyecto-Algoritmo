@@ -60,6 +60,7 @@ const PredictionForm = () => {
       setIsLoading(true);
       try {
         const data = await fetchAvailableMatches();
+        console.log("Matches from fetchAvailableMatches:", data);
         setMatches(data);
         setError('');
       } catch (err) {
@@ -95,9 +96,11 @@ const PredictionForm = () => {
           setTeamStatsError('');
           const response = await fetch(`http://localhost:5001/api/team-stats/${selectedTeam}`);
           const data = await response.json();
+          console.log(`Team Stats for ${selectedTeam}:`, data);
           if (data.error) throw new Error(data.error);
           setTeamStats(data);
         } catch (err) {
+          console.error(`Error fetching stats for ${selectedTeam}:`, err.message);
           setTeamStatsError(err.message || 'Error al obtener estadísticas');
           setTeamStats(null);
         } finally {
@@ -118,11 +121,15 @@ const PredictionForm = () => {
       return;
     }
     const [local, visitante] = selectedMatch.split(' vs ');
+    console.log('Sending prediction request for:', { local, visitante });
     setIsLoading(true);
     setError('');
     setPrediction(null);
     try {
-      const result = await fetchPrediction(local, visitante);
+      const localMapped = teamNameMapping[local] || local;
+      const visitanteMapped = teamNameMapping[visitante] || visitante;
+      const result = await fetchPrediction(localMapped, visitanteMapped);
+      console.log('Prediction result:', result);
       setPrediction(result);
       setHistory((prev) => [
         {
@@ -138,6 +145,7 @@ const PredictionForm = () => {
         ...prev,
       ]);
     } catch (err) {
+      console.error('Prediction error:', err.message);
       setError(err.message || 'Error al obtener la predicción');
     } finally {
       setIsLoading(false);

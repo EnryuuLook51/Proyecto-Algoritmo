@@ -3,9 +3,10 @@ import joblib
 
 try:
     modelo_cargado = joblib.load('models/ModeloCuotas.joblib')
+    print("Modelo cargado exitosamente desde 'models/ModeloCuotas.joblib'")
 except FileNotFoundError:
     modelo_cargado = None
-    print("ADVERTENCIA: No se encontró el archivo del modelo 'ModeloCuotas.joblib'")
+    print("ADVERTENCIA: No se encontró el archivo del modelo 'models/ModeloCuotas.joblib'")
 
 # Mapeo de nombres de equipos para sincronizar The Odds API y Football-Data.org
 TEAM_NAME_MAPPING = {
@@ -109,10 +110,10 @@ def predecir_partido(equipo_local, equipo_visitante):
     local_football_data = None
     visitante_football_data = None
     for standard_name, names in TEAM_NAME_MAPPING.items():
-        if standard_name == equipo_local:
+        if standard_name == equipo_local or names['odds_api'] == equipo_local or names['football_data'] == equipo_local:
             local_odds_api = names['odds_api']
             local_football_data = names['football_data']
-        if standard_name == equipo_visitante:
+        if standard_name == equipo_visitante or names['odds_api'] == equipo_visitante or names['football_data'] == equipo_visitante:
             visitante_odds_api = names['odds_api']
             visitante_football_data = names['football_data']
     

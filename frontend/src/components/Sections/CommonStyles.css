@@ -4,15 +4,17 @@
   min-height: 100vh;
   display: flex;
   padding: 24px;
-  background: url('https://source.unsplash.com/random/1920x1080/?soccer,stadium,lights') center/cover no-repeat;
+  background: url('/fondo-futbol.jpg') center/cover no-repeat;
   background-attachment: fixed;
   font-family: 'Inter', sans-serif;
   transition: background-color 0.5s ease, color 0.5s ease;
+  position: relative;
 }
 
 .prediction-container.dark {
-  background: #0a1a2f !important;
-  color: #f1f5f9;
+  background: url('../img/tottenham-hotspurs-fc-stadium-field-at-night-desktop-7bmq8d06ui38a4k1.webp') center/cover no-repeat;
+  background-blend-mode: overlay;
+  background-color: rgba(10, 26, 47, 0.6); /* Overlay oscuro para modo dark */
 }
 
 .main-content {
@@ -26,22 +28,25 @@
 .prediction-card {
   max-width: 600px;
   width: 100%;
-  background: linear-gradient(145deg, #ffffff 0%, #dbeafe 100%) !important;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
   padding: 36px;
   position: relative;
   overflow: hidden;
-  transition: background 0.5s ease, transform 0.3s ease;
-  border: none;
+  transition: background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .prediction-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .dark .prediction-card {
-  background: linear-gradient(145deg, #0a1a2f 0%, #1e293b 100%) !important;
+  background: rgba(10, 26, 47, 0.9);
+  border-color: rgba(30, 41, 59, 0.3);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
 }
 
@@ -107,13 +112,13 @@
   font-size: 17px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.8);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dark .form-group select,
 .dark .form-group input {
-  background: #1e293b !important;
+  background: rgba(30, 41, 59, 0.8) !important;
   border-color: #475569;
   color: #f1f5f9;
 }

@@ -10,12 +10,19 @@ const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
  */
 export const fetchPrediction = async (local, visitante) => {
   try {
+    console.log(`Requesting prediction for local: ${local}, visitante: ${visitante}`);
     const response = await axios.get(`${API_URL}/predict`, {
       params: { local, visitante },
     });
+    console.log('Prediction response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Error al obtener la predicción:', error);
+    console.error('Prediction error details:', {
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data,
+      url: error.config?.url,
+    });
     throw new Error(error.response?.data?.error || 'Error al conectar con el backend');
   }
 };
@@ -26,10 +33,17 @@ export const fetchPrediction = async (local, visitante) => {
  */
 export const fetchAvailableMatches = async () => {
   try {
+    console.log('Requesting available matches');
     const response = await axios.get(`${API_URL}/available-matches`);
+    console.log('Available matches response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Error al obtener partidos disponibles:', error);
+    console.error('Available matches error details:', {
+      message: error.message,
+      status: error.response?.status,
+      data: error.response?.data,
+      url: error.config?.url,
+    });
     throw new Error(error.response?.data?.error || 'Error al conectar con el backend');
   }
 };
